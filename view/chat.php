@@ -11,9 +11,9 @@
         for ($i = 0; $i < 5; $i++) {
         ?>
             <tr class="table-light">
-                <td>date <?= $i ?></td>
-                <td>user <?= $i ?></td>
-                <td>message <?= $i ?></td>
+                <td class="col-2">date <?= $i ?></td>
+                <td class="col-2">user <?= $i ?></td>
+                <td class="col-8">message <?= $i ?></td>
             </tr>
         <?php
         }

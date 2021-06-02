@@ -12,13 +12,13 @@
 </head>
 <body>
 
-<div class="container">
-    <h1> Live Chat Amazin </h1>
+    <div class="container">
+        <h1> Live Chat Amazin </h1>
 
-    <?php require 'view/chat.php' ?>
-    <?php require 'view/form.php' ?>
-</div>
-</div>
+        <?php require 'view/chat.php' ?>
+        <?php require 'view/form.php' ?>
+    </div>
+
     
 </body>
 </html>

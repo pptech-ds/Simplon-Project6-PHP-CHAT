@@ -12,7 +12,9 @@
 </head>
 <body>
 
-<?php require 'view/chat.php' ?>
+<div class="container">
+    <?php require 'view/chat.php' ?>
+</div>
     
 </body>
 </html>

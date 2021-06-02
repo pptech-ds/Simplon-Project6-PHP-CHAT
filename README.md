@@ -1,2 +1,7 @@
-# Simplon-Projet6-PHP-CHAT
-Chat using PHP and SQL 
+# Project Specification
+![Project Specification](docs/Projet-Chat-Fiche-Apprenant-page-001.jpg)
+
+# Pre-requisites
+HTML5 and PHP7
+
+# How to use it

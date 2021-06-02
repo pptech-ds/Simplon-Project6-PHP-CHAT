@@ -14,6 +14,8 @@
 
 <div class="container">
     <?php require 'view/chat.php' ?>
+    <?php require 'view/form.php' ?>
+</div>
 </div>
     
 </body>

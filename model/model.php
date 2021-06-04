@@ -71,12 +71,12 @@ function insertData()
             $req->bindParam(':vcontent', $content);
             
             // insertion d'une ligne
-            // if()
-            $pseudo = $_POST['pseudo'];
-            $content = $_POST['content'];
-            $req->execute();
-            $req ->closeCursor();
-        
+            if(($_POST['pseudo'] !== '') && ($_POST['content'] !== '')){
+                $pseudo = $_POST['pseudo'];
+                $content = $_POST['content'];
+                $req->execute();
+                $req ->closeCursor();
+            }
             $dbh = null;
 
     

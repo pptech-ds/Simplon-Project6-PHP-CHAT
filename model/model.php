@@ -33,7 +33,12 @@ function findAllData()
 {
     try {
         $query = '  SELECT pseudo, content, date  
-                    FROM message';
+                    FROM (
+                        SELECT pseudo, content, date  
+                        FROM message
+                        ORDER BY `date` DESC LIMIT 10
+                        ) AS req1
+                    ORDER BY `date` ASC';
     
         $req = getDBConnection()->query($query);
         $req ->setFetchMode(PDO::FETCH_ASSOC);

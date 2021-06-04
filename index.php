@@ -1,10 +1,15 @@
 <?php
 // var_dump($_POST);
+// echo '<br>';
+
 
 require 'model/model.php';
 
-$tab = findAllData();
 insertData();
+$tab = findAllData();
+
+// var_dump($tab);
+// echo '<br>';
 
 require 'view/default.php';
 

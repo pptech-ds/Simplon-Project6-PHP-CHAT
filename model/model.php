@@ -40,7 +40,7 @@ function findAllData()
         $tab = $req->fetchAll();
         $req ->closeCursor();
     
-        // echo 'query done <br>';
+        // echo 'in findAllData <br>';
         $dbh = null;
 
         return $tab;
@@ -66,12 +66,15 @@ function insertData()
             $req->bindParam(':vcontent', $content);
             
             // insertion d'une ligne
+            // if()
             $pseudo = $_POST['pseudo'];
             $content = $_POST['content'];
             $req->execute();
             $req ->closeCursor();
         
             $dbh = null;
+
+    
     
             // echo 'insert done<br>';
             

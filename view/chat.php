@@ -1,35 +1,3 @@
-<?php
-$user = 'root';
-$pass = '';
-$dbname = 'chat';
-$host = 'localhost';
-
-try {
-    $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-    $options = array(
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    );
-    $dbh = new PDO($dsn, $user, $pass, $options);
-    // echo 'connection done <br>';
-} catch (PDOException $e) {
-    print "Error !: " . $e->getMessage() . "<br/>";
-    die();
-}
-
-try {
-    $query = '  SELECT id, pseudo, content, date  
-                FROM message';
-
-    $req = $dbh->query($query);
-    $req ->setFetchMode(PDO::FETCH_ASSOC);
-    $tab = $req->fetchAll();
-    $req ->closeCursor();
-
-    // echo 'query done <br>';
-
-?>
-
 <table class="table table-hover">
     <thead>
         <tr>
@@ -40,27 +8,21 @@ try {
     </thead>
     <tbody>
         <?php
-        foreach($tab as $num => $row) {
+        // foreach($tab as $num => $row) {
+        $startMessage = 0;
+        $maxMessageToShow = 10;
+        if(count($tab) > $maxMessageToShow) {
+            $startMessage = count($tab)-$maxMessageToShow;
+        }
+        for($i=$startMessage; $i<count($tab); $i++){
         ?>
             <tr class="table-light">
-                <td class="col-2"><?= $row['date'] ?></td>
-                <td class="col-2"><?= $row['pseudo'] ?></td>
-                <td class="col-8"><?= $row['content'] ?></td>
+                <td class="col-2"><?= $tab[$i]['date'] ?></td>
+                <td class="col-2"><?= htmlspecialchars($tab[$i]['pseudo']) ?></td>
+                <td class="col-8"><?= nl2br( htmlspecialchars($tab[$i]['content']) ) ?></td>
             </tr>
         <?php
         }
         ?>
     </tbody>
 </table>
-
-<?php
-
-    
-$dbh = null;
-    
-// echo 'End of Request !';
-} catch (PDOException $e) {
-print "Error !: " . $e->getMessage() . "<br/>";
-die();
-}
-?>

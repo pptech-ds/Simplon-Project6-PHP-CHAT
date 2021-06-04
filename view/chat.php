@@ -8,18 +8,12 @@
     </thead>
     <tbody>
         <?php
-        // foreach($tab as $num => $row) {
-        $startMessage = 0;
-        $maxMessageToShow = 10;
-        if(count($tab) > $maxMessageToShow) {
-            $startMessage = count($tab)-$maxMessageToShow;
-        }
-        for($i=$startMessage; $i<count($tab); $i++){
+        foreach($tab as $row) {
         ?>
             <tr class="table-light">
-                <td class="col-2"><?= $tab[$i]['date'] ?></td>
-                <td class="col-2"><?= htmlspecialchars($tab[$i]['pseudo']) ?></td>
-                <td class="col-8"><?= nl2br( htmlspecialchars($tab[$i]['content']) ) ?></td>
+                <td class="col-2"><?= $row['date'] ?></td>
+                <td class="col-2"><?= htmlspecialchars($row['pseudo']) ?></td>
+                <td class="col-8"><?= nl2br( htmlspecialchars($row['content']) ) ?></td>
             </tr>
         <?php
         }

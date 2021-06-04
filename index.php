@@ -5,8 +5,8 @@
 
 require 'model/model.php';
 
-insertData();
-$tab = findAllData();
+insertData($_POST);
+$messages = findAllData();
 
 // var_dump($tab);
 // echo '<br>';

@@ -32,23 +32,24 @@ function getDBConnection()
 function findAllData()
 {
     try {
+        $dbh = getDBConnection();
+
         $query = '  SELECT pseudo, content, date  
                     FROM (
                         SELECT pseudo, content, date  
                         FROM message
-                        ORDER BY `date` DESC LIMIT 10
+                        ORDER BY `date` DESC LIMIT 5
                         ) AS req1
                     ORDER BY `date` ASC';
     
-        $req = getDBConnection()->query($query);
+        $req = $dbh->query($query);
         $req ->setFetchMode(PDO::FETCH_ASSOC);
-        $tab = $req->fetchAll();
+        $messages = $req->fetchAll();
         $req ->closeCursor();
     
-        // echo 'in findAllData <br>';
         $dbh = null;
 
-        return $tab;
+        return $messages;
     
     // echo 'End of Request !';
     } catch (PDOException $e) {
@@ -59,31 +60,24 @@ function findAllData()
 
 
 
-function insertData()
+function insertData(array $post)
 {
-    if($_POST !== []){
+    if($post !== []){
         // SQL Insert
         try {
-            $query = 'INSERT INTO message (pseudo, content) VALUES (:vpseudo, :vcontent)';
+            if(($post['pseudo'] !== '') && ($post['content'] !== '')){
+                $dbh = getDBConnection();
+
+                $query = 'INSERT INTO message (pseudo, content) VALUES (:pseudoVal, :contentVal)';
     
-            $req = getDBConnection()->prepare($query);
-            $req->bindParam(':vpseudo', $pseudo);
-            $req->bindParam(':vcontent', $content);
-            
-            // insertion d'une ligne
-            if(($_POST['pseudo'] !== '') && ($_POST['content'] !== '')){
-                $pseudo = $_POST['pseudo'];
-                $content = $_POST['content'];
+                $req = $dbh->prepare($query);
+                $req -> bindValue(':pseudoVal', $post['pseudo'], PDO::PARAM_STR);
+                $req -> bindValue(':contentVal', $post['content'], PDO::PARAM_STR);
                 $req->execute();
                 $req ->closeCursor();
-            }
-            $dbh = null;
 
-    
-    
-            // echo 'insert done<br>';
-            
-            // echo 'End of Request !';
+                $dbh = null;
+            }
         } catch (PDOException $e) {
             print "Error !: " . $e->getMessage() . "<br/>";
             die();

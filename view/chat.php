@@ -8,12 +8,12 @@
     </thead>
     <tbody>
         <?php
-        foreach($tab as $row) {
+        foreach($messages as $message) {
         ?>
             <tr class="table-light">
-                <td class="col-2"><?= $row['date'] ?></td>
-                <td class="col-2"><?= htmlspecialchars($row['pseudo']) ?></td>
-                <td class="col-8"><?= nl2br( htmlspecialchars($row['content']) ) ?></td>
+                <td class="col-2"><?= $message['date'] ?></td>
+                <td class="col-2"><?= htmlspecialchars($message['pseudo']) ?></td>
+                <td class="col-8"><?= nl2br( htmlspecialchars($message['content']) ) ?></td>
             </tr>
         <?php
         }
